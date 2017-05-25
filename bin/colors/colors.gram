@@ -1,0 +1,7 @@
+#JSGF V1.0;
+/**
+* JSGF Grammar for colors
+*/
+grammar colors;
+
+public <color> = black | blue | green | red | yellow | white;

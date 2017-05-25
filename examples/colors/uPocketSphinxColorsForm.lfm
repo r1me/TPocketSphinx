@@ -1,0 +1,36 @@
+object PocketSphinxColorForm: TPocketSphinxColorForm
+  Left = 307
+  Height = 128
+  Top = 242
+  Width = 323
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  ClientHeight = 128
+  ClientWidth = 323
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poDefaultPosOnly
+  LCLVersion = '1.6.0.4'
+  object lbStatus: TLabel
+    Left = 16
+    Height = 13
+    Top = 16
+    Width = 35
+    Caption = 'Status:'
+    ParentColor = False
+  end
+  object lbHypothesis: TLabel
+    Left = 17
+    Height = 13
+    Top = 41
+    Width = 93
+    Caption = 'Recent hypothesis:'
+    ParentColor = False
+  end
+  object spColorBox: TShape
+    Left = 17
+    Height = 41
+    Top = 72
+    Width = 289
+  end
+end

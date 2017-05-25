@@ -1,0 +1,58 @@
+object PocketSphinxBassForm: TPocketSphinxBassForm
+  Left = 309
+  Height = 225
+  Top = 126
+  Width = 394
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  ClientHeight = 225
+  ClientWidth = 394
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '1.6.0.4'
+  object lbStatus: TLabel
+    Left = 16
+    Height = 13
+    Top = 16
+    Width = 35
+    Caption = 'Status:'
+    ParentColor = False
+  end
+  object memHypothesis: TMemo
+    Left = 17
+    Height = 127
+    Top = 48
+    Width = 359
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object cbClearOnHypothesis: TCheckBox
+    Left = 17
+    Height = 17
+    Top = 191
+    Width = 169
+    Caption = 'Clear text on every hypothesis'
+    Checked = True
+    State = cbChecked
+    TabOrder = 1
+  end
+  object cbInputSource: TComboBox
+    Left = 224
+    Height = 21
+    Top = 14
+    Width = 152
+    ItemHeight = 13
+    OnChange = cbInputSourceChange
+    Style = csDropDownList
+    TabOrder = 2
+  end
+  object lbInputSource: TLabel
+    Left = 176
+    Height = 13
+    Top = 16
+    Width = 37
+    Caption = 'Source:'
+    ParentColor = False
+  end
+end

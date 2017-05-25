@@ -1,0 +1,41 @@
+object PocketSphinxAnyWordForm: TPocketSphinxAnyWordForm
+  Left = 308
+  Height = 225
+  Top = 100
+  Width = 394
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  ClientHeight = 225
+  ClientWidth = 394
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poDefaultPosOnly
+  LCLVersion = '1.6.0.4'
+  object lbStatus: TLabel
+    Left = 16
+    Height = 13
+    Top = 16
+    Width = 35
+    Caption = 'Status:'
+    ParentColor = False
+  end
+  object memHypothesis: TMemo
+    Left = 17
+    Height = 127
+    Top = 48
+    Width = 359
+    ReadOnly = True
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object cbClearOnHypothesis: TCheckBox
+    Left = 17
+    Height = 17
+    Top = 191
+    Width = 169
+    Caption = 'Clear text on every hypothesis'
+    Checked = True
+    State = cbChecked
+    TabOrder = 1
+  end
+end
