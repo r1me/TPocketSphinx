@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
@@ -28,7 +28,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\src;..\..\src\pocketsphinx"/>
+            <OtherUnitFiles Value="..\..\src\pocketsphinx;..\..\src"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -76,7 +76,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\src;..\..\src\pocketsphinx"/>
+            <OtherUnitFiles Value="..\..\src\pocketsphinx;..\..\src"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -114,7 +114,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="..\..\src;..\..\src\pocketsphinx"/>
+            <OtherUnitFiles Value="..\..\src\pocketsphinx;..\..\src"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -173,32 +173,32 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="..\..\src\uPocketSphinxSTT.pas"/>
+        <Filename Value="..\..\src\pocketsphinx\ad.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="..\..\src\pocketsphinx\ad.pas"/>
+        <Filename Value="..\..\src\pocketsphinx\cmd_ln.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="..\..\src\pocketsphinx\cmd_ln.pas"/>
+        <Filename Value="..\..\src\pocketsphinx\pocketsphinx.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="..\..\src\pocketsphinx\pocketsphinx.pas"/>
-        <IsPartOfProject Value="True"/>
-      </Unit4>
-      <Unit5>
         <Filename Value="bass.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="BASS"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="uPocketSphinxBassForm.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PocketSphinxBassForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\..\src\uPocketSphinx.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit6>
     </Units>
   </ProjectOptions>
@@ -210,7 +210,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\..\src;..\..\src\pocketsphinx"/>
+      <OtherUnitFiles Value="..\..\src\pocketsphinx;..\..\src"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <CodeGeneration>

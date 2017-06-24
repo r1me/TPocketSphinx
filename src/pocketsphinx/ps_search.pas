@@ -24,14 +24,14 @@ type
  *
  * @return 0 on success, -1 on failure
  *}
-function ps_set_search(ps: pps_decoder_t; name: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_search(ps: pps_decoder_t; name: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Returns name of curent search in decoder
  *
  * @see ps_set_search
  *}
-function ps_get_search(ps: pps_decoder_t): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_get_search(ps: pps_decoder_t): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Unsets the search and releases related resources.
@@ -43,7 +43,7 @@ function ps_get_search(ps: pps_decoder_t): PAnsiChar; cdecl; external pocketsphi
  * @see ps_set_lm
  * @see ps_set_kws
  *}
-function ps_unset_search(ps: pps_decoder_t; name: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_unset_search(ps: pps_decoder_t; name: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Returns iterator over current searches
@@ -66,7 +66,7 @@ function ps_search_iter_next(itor: pps_search_iter_t): pps_search_iter_t; cdecl;
  *
  * @see ps_set_search
  *}
-function ps_search_iter_val(itor: pps_search_iter_t): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_search_iter_val(itor: pps_search_iter_t): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Delete an unfinished search iterator
@@ -86,7 +86,7 @@ procedure ps_search_iter_free(itor: pps_search_iter_t); cdecl; external pocketsp
  *         not attempt to free it manually.  Use ngram_model_retain()
  *         if you wish to reuse it elsewhere.
  *}
-function ps_get_lm(ps: pps_decoder_t; name: PAnsiChar): pngram_model_t; cdecl; external pocketsphinxlib;
+function ps_get_lm(ps: pps_decoder_t; name: PUTF8Char): pngram_model_t; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search based on N-gram language model.
@@ -96,7 +96,7 @@ function ps_get_lm(ps: pps_decoder_t; name: PAnsiChar): pngram_model_t; cdecl; e
  *
  * @see ps_set_search.
  *}
-function ps_set_lm(ps: pps_decoder_t; name: PAnsiChar; lm: pngram_model_t): Integer; cdecl; external pocketsphinxlib;
+function ps_set_lm(ps: pps_decoder_t; name: PUTF8Char; lm: pngram_model_t): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search based on N-gram language model.
@@ -105,7 +105,7 @@ function ps_set_lm(ps: pps_decoder_t; name: PAnsiChar; lm: pngram_model_t): Inte
  *
  * @see ps_set_lm
  *}
-function ps_set_lm_file(ps: pps_decoder_t; name: PAnsiChar; path: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_lm_file(ps: pps_decoder_t; name: PUTF8Char; path: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Get the finite-state grammar set object for this decoder.
@@ -116,7 +116,7 @@ function ps_set_lm_file(ps: pps_decoder_t; name: PAnsiChar; path: PAnsiChar): In
  * @return The current FSG set object for this decoder, or
  *         NULL if none is available.
  *}
-function ps_get_fsg(ps: pps_decoder_t; name: PAnsiChar): pfsg_model_t; cdecl; external pocketsphinxlib;
+function ps_get_fsg(ps: pps_decoder_t; name: PUTF8Char): pfsg_model_t; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search based on finite state grammar.
@@ -126,7 +126,7 @@ function ps_get_fsg(ps: pps_decoder_t; name: PAnsiChar): pfsg_model_t; cdecl; ex
  *
  * @see ps_set_search
  *}
-function ps_set_fsg(ps: pps_decoder_t; name: PAnsiChar; fsg: pfsg_model_t): Integer; cdecl; external pocketsphinxlib;
+function ps_set_fsg(ps: pps_decoder_t; name: PUTF8Char; fsg: pfsg_model_t): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search using JSGF model.
@@ -135,7 +135,7 @@ function ps_set_fsg(ps: pps_decoder_t; name: PAnsiChar; fsg: pfsg_model_t): Inte
  *
  * @see ps_set_fsg
  *}
-function ps_set_jsgf_file(ps: pps_decoder_t; name: PAnsiChar; path: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_jsgf_file(ps: pps_decoder_t; name: PUTF8Char; path: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search using JSGF model.
@@ -144,7 +144,7 @@ function ps_set_jsgf_file(ps: pps_decoder_t; name: PAnsiChar; path: PAnsiChar): 
  *
  * @see ps_set_fsg
  *}
-function ps_set_jsgf_string(ps: pps_decoder_t; name: PAnsiChar; jsgf_string: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_jsgf_string(ps: pps_decoder_t; name: PUTF8Char; jsgf_string: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Get the current Key phrase to spot
@@ -154,7 +154,7 @@ function ps_set_jsgf_string(ps: pps_decoder_t; name: PAnsiChar; jsgf_string: PAn
  *
  * @return The current keyphrase to spot
  *}
-function ps_get_kws(ps: pps_decoder_t; name: PAnsiChar): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_get_kws(ps: pps_decoder_t; name: PUTF8Char): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Adds keywords from a file to spotting
@@ -164,7 +164,7 @@ function ps_get_kws(ps: pps_decoder_t; name: PAnsiChar): PAnsiChar; cdecl; exter
  *
  * @see ps_set_search
  *}
-function ps_set_kws(ps: pps_decoder_t; name: PAnsiChar; keyfile: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_kws(ps: pps_decoder_t; name: PUTF8Char; keyfile: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new keyword to spot
@@ -174,7 +174,7 @@ function ps_set_kws(ps: pps_decoder_t; name: PAnsiChar; keyfile: PAnsiChar): Int
  *
  * @see ps_set_search
  *}
-function ps_set_keyphrase(ps: pps_decoder_t; name: PAnsiChar; keyphrase: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_keyphrase(ps: pps_decoder_t; name: PUTF8Char; keyphrase: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search based on phone N-gram language model.
@@ -184,7 +184,7 @@ function ps_set_keyphrase(ps: pps_decoder_t; name: PAnsiChar; keyphrase: PAnsiCh
  *
  * @see ps_set_search.
  *}
-function ps_set_allphone(ps: pps_decoder_t; name: PAnsiChar; lm: pngram_model_t): Integer; cdecl; external pocketsphinxlib;
+function ps_set_allphone(ps: pps_decoder_t; name: PUTF8Char; lm: pngram_model_t): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Adds new search based on phone N-gram language model.
@@ -193,7 +193,7 @@ function ps_set_allphone(ps: pps_decoder_t; name: PAnsiChar; lm: pngram_model_t)
  *
  * @see ps_set_allphone
  *}
-function ps_set_allphone_file(ps: pps_decoder_t; name: PAnsiChar; path: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+function ps_set_allphone_file(ps: pps_decoder_t; name: PUTF8Char; path: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 implementation
 

@@ -67,7 +67,7 @@ type
     FActive: Boolean;
     FThreshold: Integer;
 
-    FAcousticModelPath: AnsiString;
+    FAcousticModelPath: String;
 
     FAudioSource: TPocketSphinxAudioSource;
 
@@ -85,31 +85,31 @@ type
 
     procedure SetActive(ANewValue: Boolean);
 
-    procedure SetActiveSearch(SearchName: AnsiString);
-    function GetActiveSearch: AnsiString;
+    procedure SetActiveSearch(SearchName: String);
+    function GetActiveSearch: String;
     procedure AssignAudioSource(AudioSource: TPocketSphinxAudioSource);
   public
     property LastErrorMsg: String read FLastErrorMsg;
 
     property State: TPocketSphinxState read FState write SetState;
     property Active: Boolean read FActive write SetActive;
-    property ActiveSearch: AnsiString read GetActiveSearch write SetActiveSearch;
+    property ActiveSearch: String read GetActiveSearch write SetActiveSearch;
     property Threshold: Integer read FThreshold write FThreshold;
     property AudioSource: TPocketSphinxAudioSource read FAudioSource write AssignAudioSource;
 
-    property AcousticModelPath: AnsiString read FAcousticModelPath write FAcousticModelPath;
+    property AcousticModelPath: String read FAcousticModelPath write FAcousticModelPath;
 
     property OnStateChange: TOnPocketSphinxStateChange read FOnStateChange write FOnStateChange;
     property OnHypothesis: TOnPocketSphinxHypothesis read FOnHypothesis write FOnHypothesis;
 
-    function AddKeyphraseSearch(SearchName: AnsiString; KeyPhrase: AnsiString): Boolean;
-    function AddKeyphraseSearchFile(SearchName: AnsiString; FileName: AnsiString): Boolean;
-    function AddGrammarSearch(SearchName: AnsiString; JSGFString: AnsiString): Boolean;
-    function AddGrammarSearchFile(SearchName: AnsiString; FileName: AnsiString): Boolean;
-    function AddNgramSearch(SearchName: AnsiString; FileName: AnsiString): Boolean;
-    function AddAllphoneSearch(SearchName: AnsiString; FileName: AnsiString): Boolean;
+    function AddKeyphraseSearch(SearchName: String; KeyPhrase: String): Boolean;
+    function AddKeyphraseSearchFile(SearchName: String; FileName: String): Boolean;
+    function AddGrammarSearch(SearchName: String; JSGFString: String): Boolean;
+    function AddGrammarSearchFile(SearchName: String; FileName: String): Boolean;
+    function AddNgramSearch(SearchName: String; FileName: String): Boolean;
+    function AddAllphoneSearch(SearchName: String; FileName: String): Boolean;
 
-    function LoadDictionary(FileName: AnsiString): Boolean;
+    function LoadDictionary(FileName: String): Boolean;
 
     procedure Init;
 
@@ -166,14 +166,14 @@ begin
   end;
 end;
 
-function TPocketSphinx.GetActiveSearch: AnsiString;
+function TPocketSphinx.GetActiveSearch: String;
 begin
-  Result := AnsiString(ps_get_search(FDecoder));
+  Result := String(UTF8Decode(ps_get_search(FDecoder)));
 end;
 
-procedure TPocketSphinx.SetActiveSearch(SearchName: AnsiString);
+procedure TPocketSphinx.SetActiveSearch(SearchName: String);
 begin
-  ps_set_search(FDecoder, PAnsiChar(SearchName));
+  ps_set_search(FDecoder, PUTF8Char(UTF8Encode(SearchName)));
 end;
 
 procedure TPocketSphinx.SendState;
@@ -188,45 +188,45 @@ begin
     OnHypothesis(Self, FHypothesisScore, FRecentHypothesis);
 end;
 
-function TPocketSphinx.AddKeyphraseSearch(SearchName: AnsiString;
-  KeyPhrase: AnsiString): Boolean;
+function TPocketSphinx.AddKeyphraseSearch(SearchName: String;
+  KeyPhrase: String): Boolean;
 begin
-  Result := ps_set_keyphrase(FDecoder, PAnsiChar(SearchName), PAnsiChar(KeyPhrase)) = 0;
+  Result := ps_set_keyphrase(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(KeyPhrase))) = 0;
 end;
 
-function TPocketSphinx.AddKeyphraseSearchFile(SearchName: AnsiString;
-  FileName: AnsiString): Boolean;
+function TPocketSphinx.AddKeyphraseSearchFile(SearchName: String;
+  FileName: String): Boolean;
 begin
-  Result := ps_set_kws(FDecoder, PAnsiChar(SearchName), PAnsiChar(FileName)) = 0;
+  Result := ps_set_kws(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(FileName))) = 0;
 end;
 
-function TPocketSphinx.AddGrammarSearch(SearchName: AnsiString;
-  JSGFString: AnsiString): Boolean;
+function TPocketSphinx.AddGrammarSearch(SearchName: String;
+  JSGFString: String): Boolean;
 begin
-  Result := ps_set_jsgf_string(FDecoder, PAnsiChar(SearchName), PAnsiChar(JSGFString)) = 0;
+  Result := ps_set_jsgf_string(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(JSGFString))) = 0;
 end;
 
-function TPocketSphinx.AddGrammarSearchFile(SearchName: AnsiString;
-  FileName: AnsiString): Boolean;
+function TPocketSphinx.AddGrammarSearchFile(SearchName: String;
+  FileName: String): Boolean;
 begin
-  Result := ps_set_jsgf_file(FDecoder, PAnsiChar(SearchName), PAnsiChar(FileName)) = 0;
+  Result := ps_set_jsgf_file(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(FileName))) = 0;
 end;
 
-function TPocketSphinx.AddNgramSearch(SearchName: AnsiString; FileName: AnsiString
+function TPocketSphinx.AddNgramSearch(SearchName: String; FileName: String
   ): Boolean;
 begin
-  Result := ps_set_lm_file(FDecoder, PAnsiChar(SearchName), PAnsiChar(FileName)) = 0;
+  Result := ps_set_lm_file(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(FileName))) = 0;
 end;
 
-function TPocketSphinx.AddAllphoneSearch(SearchName: AnsiString; FileName: AnsiString
+function TPocketSphinx.AddAllphoneSearch(SearchName: String; FileName: String
   ): Boolean;
 begin
-  Result := ps_set_allphone_file(FDecoder, PAnsiChar(SearchName), PAnsiChar(FileName)) = 0;
+  Result := ps_set_allphone_file(FDecoder, PUTF8Char(UTF8Encode(SearchName)), PUTF8Char(UTF8Encode(FileName))) = 0;
 end;
 
-function TPocketSphinx.LoadDictionary(FileName: AnsiString): Boolean;
+function TPocketSphinx.LoadDictionary(FileName: String): Boolean;
 begin
-  Result := ps_load_dict(FDecoder, PAnsiChar(FileName), nil, nil) = 0;
+  Result := ps_load_dict(FDecoder, PUTF8Char(UTF8Encode(FileName)), nil, nil) = 0;
 end;
 
 procedure TPocketSphinx.Execute;
@@ -234,7 +234,7 @@ var
   utt_started, in_speech: Boolean;
   nframes: Integer;
   adbuf: array[0..2048-1] of SmallInt;
-  hyp: PAnsiChar;
+  hyp: PUTF8Char;
   score: Integer;
   delayev: TSimpleEvent;
 begin
@@ -285,7 +285,7 @@ begin
 
           if (hyp <> nil) then
           begin
-            FRecentHypothesis := String(hyp);
+            FRecentHypothesis := String(UTF8Decode(hyp));
             FHypothesisScore := score;
 
             Synchronize({$IFDEF FPC}@{$ENDIF}SendHypothesis);
@@ -307,8 +307,8 @@ end;
 procedure TPocketSphinx.Init;
 begin
   FConfig := cmd_ln_init(nil, ps_args(), True
-    {$IFDEF Debug}, PAnsiChar('-logfn'), PAnsiChar('ps.log'){$ENDIF},
-    PAnsiChar('-hmm'), PAnsiChar(FAcousticModelPath),
+    {$IFDEF Debug}, PUTF8Char(UTF8Encode('-logfn')), PUTF8Char(UTF8Encode('ps.log')){$ENDIF},
+    PUTF8Char(UTF8Encode('-hmm')), PUTF8Char(UTF8Encode(FAcousticModelPath)),
     nil);
 
   if not Assigned(FConfig) then

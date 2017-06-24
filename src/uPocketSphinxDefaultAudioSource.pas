@@ -42,7 +42,7 @@ begin
   FSampleRate := DEFAULT_SAMPLES_PER_SEC;
 
   if ADeviceName <> '' then
-    FAudioDevice := ad_open_dev(PAnsiChar(ADeviceName), FSampleRate)
+    FAudioDevice := ad_open_dev(PUTF8Char(UTF8Encode(ADeviceName)), FSampleRate)
   else
     FAudioDevice := ad_open_dev(nil, FSampleRate);
 

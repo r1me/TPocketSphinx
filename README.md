@@ -2,7 +2,7 @@
 The required minimum set of [pocketpshinx](https://github.com/cmusphinx/pocketsphinxpocketsphinx) (and [sphinxbase](https://github.com/cmusphinx/sphinxbase)) headers, translated to Object Pascal. Custom thread wrapper `TPocketSphinx` is capable of recognizing English speech live from a default audio source in Windows and Linux, call back with status and hypothesis if available.
 
 ## Building examples
-1. Demos: *colors* and *anyword* were designed in [Lazarus](http://www.lazarus-ide.org/) (version 1.6.0 used). Demo *anyword-delphi* was tested in Delphi XE10.
+1. Demos: *colors* and *anyword* were designed in [Lazarus](http://www.lazarus-ide.org/) (version 1.6.4 used). Demo *anyword-delphi* was tested in Delphi 10.2 Tokyo.
 2. **Linux only**: pocketsphinx installation is explained in this [tutorial](http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx). Basically `./configure` and `make install` for sphinxbase and pocketsphinx (in this order).
 3. Build any of the examples:   
    `examples\colors\PocketSphinxColors.lpi` - Recognition of few words defined in grammar and dictionary files: *black, blue, green, red, yellow, white*. This demo will initialize very quickly and use minimum resources, since dictionary file contains only few words and search scope is limited to them.   

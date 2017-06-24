@@ -7,7 +7,7 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, uPocketSphinxAnyWordForm;
+  Forms, uPocketSphinxAnyWordForm, uPocketSphinx;
 
 {$R *.res}
 

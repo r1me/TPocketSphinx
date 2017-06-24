@@ -19,6 +19,11 @@ const
   pocketsphinxlib = 'pocketsphinx.dll';
 {$ENDIF}
 
+{$IFDEF FPC}
+type
+  PUTF8Char = PAnsiChar;
+{$ENDIF}
+
 type
   pps_decoder_t = Pointer;
 
@@ -169,7 +174,7 @@ function ps_update_mllr(ps: pps_decoder_t; mllr: pps_mllr_t): pps_mllr_t; cdecl 
  *               automatically (currently unused,should be NULL)
  *}
 function ps_load_dict(ps: pps_decoder_t;
-                      const dictfile, fdictfile, format: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+                      const dictfile, fdictfile, format: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Dump the current pronunciation dictionary to a file.
@@ -181,7 +186,7 @@ function ps_load_dict(ps: pps_decoder_t;
  *               default (text) format (currently unused, should be NULL)
  *}
 function ps_save_dict(ps: pps_decoder_t;
-                      const dictfile, format: PAnsiChar): Integer; cdecl; external pocketsphinxlib;
+                      const dictfile, format: PUTF8Char): Integer; cdecl; external pocketsphinxlib;
 
 {**
  * Add a word to the pronunciation dictionary.
@@ -203,7 +208,7 @@ function ps_save_dict(ps: pps_decoder_t;
  *         failure.
  *}
 function ps_add_word(ps: pps_decoder_t;
-                     const word, phones: PAnsiChar;
+                     const word, phones: PUTF8Char;
                      update: Integer): Integer; cdecl; external pocketsphinxlib;
 
 {**
@@ -217,7 +222,7 @@ function ps_add_word(ps: pps_decoder_t;
  *         or NULL if word is not present in the dictionary. The string is
  *         allocated and must be freed by the user.
  *}
-function ps_lookup_word(ps: pps_decoder_t; const word: PAnsiChar): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_lookup_word(ps: pps_decoder_t; const word: PUTF8Char): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Decode a raw audio stream.
@@ -334,7 +339,7 @@ function ps_end_utt(ps: pps_decoder_t): Integer; cdecl; external pocketsphinxlib
  * @return String containing best hypothesis at this point in
  *         decoding.  NULL if no hypothesis is available.
  *}
-function ps_get_hyp(ps: pps_decoder_t; out out_best_score: Integer): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_get_hyp(ps: pps_decoder_t; out out_best_score: Integer): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Get hypothesis string and final flag.
@@ -344,7 +349,7 @@ function ps_get_hyp(ps: pps_decoder_t; out out_best_score: Integer): PAnsiChar; 
  * @return String containing best hypothesis at this point in
  *         decoding.  NULL if no hypothesis is available.
  *}
-function ps_get_hyp_final(ps: pps_decoder_t; out out_is_final: Integer): PAnsiChar; cdecl; external pocketsphinxlib;
+function ps_get_hyp_final(ps: pps_decoder_t; out out_is_final: Integer): PUTF8Char; cdecl; external pocketsphinxlib;
 
 {**
  * Get posterior probability.
@@ -401,7 +406,7 @@ function ps_seg_next(seg: pps_seg_t): pps_seg_t; cdecl external pocketsphinxlib;
  * @return Read-only string giving string name of this segment.  This
  * is only valid until the next call to ps_seg_next().
  *}
-function ps_seg_word(seg: pps_seg_t): PAnsiChar; cdecl external pocketsphinxlib;
+function ps_seg_word(seg: pps_seg_t): PUTF8Char; cdecl external pocketsphinxlib;
 
 {**
  * Get inclusive start and end frames from a segmentation iterator.
@@ -474,7 +479,7 @@ function ps_nbest_next(nbest: pps_nbest_t): pps_nbest_t; cdecl external pocketsp
  * @param out_score Output: Path score for this hypothesis.
  * @return String containing next best hypothesis.
  *}
-function ps_nbest_hyp(nbest: pps_nbest_t; var out_score: Integer): PAnsiChar; cdecl external pocketsphinxlib;
+function ps_nbest_hyp(nbest: pps_nbest_t; var out_score: Integer): PUTF8Char; cdecl external pocketsphinxlib;
 
 {**
  * Get the word segmentation from an N-best list iterator.

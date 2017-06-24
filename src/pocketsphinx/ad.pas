@@ -17,6 +17,11 @@ const
   sphinxadlib = 'sphinxbase.dll';
 {$ENDIF}
 
+{$IFDEF FPC}
+type
+  PUTF8Char = PAnsiChar;
+{$ENDIF}
+
 const
   DEFAULT_SAMPLES_PER_SEC = 16000;
 
@@ -45,7 +50,7 @@ type
  * otherwise.  The return value to be used as the first argument to
  * other recording functions.
  *}
-function ad_open_dev(const dev: PAnsiChar; samples_per_sec: Integer): pad_rec_t; cdecl; external sphinxadlib;
+function ad_open_dev(const dev: PUTF8Char; samples_per_sec: Integer): pad_rec_t; cdecl; external sphinxadlib;
 
 {**
  * Open the default audio device with a given sampling rate.
