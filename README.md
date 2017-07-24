@@ -1,4 +1,6 @@
 # TPocketSphinx
+[![Click here to lend your support to r1me and make a donation at pledgie.com !](https://pledgie.com/campaigns/34292.png)](https://pledgie.com/campaigns/34292)
+
 The required minimum set of [pocketpshinx](https://github.com/cmusphinx/pocketsphinxpocketsphinx) (and [sphinxbase](https://github.com/cmusphinx/sphinxbase)) headers, translated to Object Pascal. Custom thread wrapper `TPocketSphinx` is capable of recognizing English speech live from a default audio source in Windows and Linux, call back with status and hypothesis if available.
 
 ## Building examples
