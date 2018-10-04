@@ -1,7 +1,5 @@
 # TPocketSphinx
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SSCM9JJLXA8UC)
-
-The required minimum set of [pocketpshinx](https://github.com/cmusphinx/pocketsphinxpocketsphinx) (and [sphinxbase](https://github.com/cmusphinx/sphinxbase)) headers, translated to Object Pascal. Custom thread wrapper `TPocketSphinx` is capable of recognizing English speech live from a default audio source in Windows and Linux, call back with status and hypothesis if available.
+The minimal set of [pocketpshinx](https://github.com/cmusphinx/pocketsphinxpocketsphinx) (and [sphinxbase](https://github.com/cmusphinx/sphinxbase)) headers, translated to Object Pascal. Custom thread wrapper `TPocketSphinx` is capable of recognizing English speech live from a default audio source in Windows and Linux, call back with status and hypothesis if available.
 
 ## Building examples
 1. Demos: *colors* and *anyword* were designed in [Lazarus](http://www.lazarus-ide.org/) (version 1.6.4 used). Demo *anyword-delphi* was tested in Delphi 10.2 Tokyo.
@@ -35,6 +33,9 @@ To create a new list of "accepted" words that can be used in your "command and c
 | http://www.speech.cs.cmu.edu/tools/lextool.html | http://www.speech.cs.cmu.edu/cgi-bin/cmudict |
 
 Make sure that words in your dictionary and grammar file are lowercase or uppercase for both (not mixed), otherwise PocketSphinx will fail to initialize.
+
+## Donate
+PayPal: [![Donate with PayPal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SSCM9JJLXA8UC)  Bitcoin: [![Donate with Bitcoin](http://rime.ddns.net/bitcoin_small.png)](http://rime.ddns.net/bitcoin.png)
 
 ## License
 MIT
