@@ -4,10 +4,13 @@ unit cmd_ln;
 Copyright (c) 2017 Damian Woroch, http://r1me.pl }
 
 {$IFDEF FPC}
-{$mode objfpc}{$H+}
+{$mode delphi}{$H+}
 {$ENDIF}
 
 interface
+
+uses
+  dynlibs;
 
 const
 {$IFDEF Linux}
@@ -39,16 +42,34 @@ type
  * @param strict Whether to fail on duplicate or unknown arguments.
  * @return A cmd_ln_t* containing the results of command line parsing, or NULL on failure.
  *}
-function cmd_ln_init(inout_cmdln: pcmd_ln_t; defn: parg_t; bfailunk: Boolean): pcmd_ln_t; cdecl; varargs external sphinxbaselib;
+  Tcmd_ln_init = function(inout_cmdln: pcmd_ln_t; defn: parg_t; bfailunk: Boolean): pcmd_ln_t; cdecl varargs;
 
 {**
  * Release a command-line argument set and all associated strings.
  *
  * @return new reference count (0 if freed completely)
  *}
-function cmd_ln_free_r(cmdln: pcmd_ln_t): Integer; cdecl; external sphinxbaselib;
+  Tcmd_ln_free_r = function(cmdln: pcmd_ln_t): Integer; cdecl;
+
+var
+  Lib: TLibHandle;
+  cmd_ln_init: Tcmd_ln_init;
+  cmd_ln_free_r: Tcmd_ln_free_r;
 
 implementation
+
+procedure LoadLibrary;
+begin
+  Lib := DynLibs.LoadLibrary(sphinxbaselib);
+  if Lib <> DynLibs.NilHandle then
+  begin
+    cmd_ln_init := GetProcAddress(Lib, 'cmd_ln_init');
+    cmd_ln_free_r := GetProcAddress(Lib, 'cmd_ln_free_r');
+  end;
+end;
+
+initialization
+  LoadLibrary;
 
 end.
 
