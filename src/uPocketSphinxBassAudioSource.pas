@@ -8,7 +8,7 @@ Copyright (c) 2017 Damian Woroch, http://r1me.pl }
 interface
 
 uses
-  Windows, Classes, SysUtils, Dialogs, uPocketSphinx, bass;
+  Classes, SysUtils, Dialogs, uPocketSphinx, bass;
 
 type
 
@@ -38,6 +38,11 @@ type
 function GetMicrophoneDeviceIdx: Integer;
 
 implementation
+
+function HIWORD(l : longint) : WORD;
+begin
+  HIWORD:=WORD(((DWORD(l)) shr 16) and $FFFF);
+end;
 
 { TBassAudioSource }
 
@@ -71,7 +76,7 @@ begin
 
   // Initialize audio device - 16000hz, mono, 16 bits
   Result := BASS_RecordInit(ADeviceIdx) and
-    BASS_Init(ADeviceIdx, 16000, BASS_DEVICE_MONO or BASS_DEVICE_FREQ, GetCurrentThread, nil);
+    BASS_Init(ADeviceIdx, 16000, BASS_DEVICE_MONO or BASS_DEVICE_FREQ, GetCurrentThreadID, nil);
 
   FBassInitialized := Result;
 end;
